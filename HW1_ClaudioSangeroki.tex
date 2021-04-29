@@ -1,0 +1,187 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\pagenumbering{gobble}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{color}
+\usepackage{comment}
+\usepackage{tikz}
+\usepackage[italicdiff]{physics}
+\graphicspath{ {\string~/Desktop/} }
+
+
+\title{CSE142-Fall 2019\\ Assignment 1}
+\date{Handed out: September 27, 2018 \\ Due: October 7, 2019 at 11:59 PM}
+
+\begin{document}
+
+\maketitle
+
+\noindent\rule{18cm}{0.4pt}
+
+\begin{itemize}
+\item You should have seen most of the material. The goal of this assignment is to allow you to go back to some of this and refresh your memory. This assignment will not be graded, but there are points for submitting it.
+
+\item For this assignment, you are allowed to talk to other members of the class. You should, however, write down your solution yourself. Please try to keep the solution brief and clear.
+
+\item Please submit a pdf of your solutions on canvas. This assignment \textbf{cannot} be done in groups. Please \emph{clearly} write your name, and student id number on the first page of your submission.    
+\end{itemize}
+
+\noindent\rule{18cm}{0.4pt}
+
+\begin{enumerate}
+\item Assume $x\in \mathbb{R}$ is distributed as a Normal distribution with mean$=\mu$ and variance$=\sigma^2$. 
+\begin{enumerate}
+\item Write the probability density function for $x$. 
+
+ \vspace{3mm}
+\Large
+ $f(x) = \frac{1}{\sqrt{2\pi}*\sqrt{\sigma^2}} *e^\frac{-(x-\mu)^2}{2\sigma^2}$
+ \normalsize
+ \vspace{3mm}
+ 
+\item Can the value of this probability density function be greater than $1$? Say yes/no.\\
+Yes\\
+\item Can the value of this probability density function be less than $0$? Say yes/no.\\
+No\\
+\item If $\mu=2.0$, draw a rough sketch of the distribution of $x$ with variance$=\sigma_1^2$. In the same figure, also draw a rough distribution of $x$ if $\mu=2.0$ and variance$=\sigma_2^2$ where $\sigma_2 > \sigma_1$. It is okay to draw this figure by hand and include its photo as the answer to this question.
+
+\includegraphics[scale=0.125]{graphhw1}
+
+\item Write the partial derivative of the expression that you wrote above with respect to $x$. 
+
+ \vspace{3mm}
+\Large
+ $\pdv{f}{x} = \frac{1}{\sqrt{2\pi}*\sqrt{\sigma^2}} *e^\frac{-(x-\mu)^2}{2\sigma^2}*\frac{-2(x-\mu)}{2\sigma^2}$
+  \vspace{3mm}
+ \normalsize
+\item Find $x$ that maximizes the probability density function you wrote as an answer to (a). You have to derive this mathematically.
+\end{enumerate}
+
+
+
+\item Assume that the probability of obtaining heads when tossing a coin is $\lambda$.
+\begin{enumerate}
+\item What is the probability of obtaining the first head at the (k + 1)-th toss?\\
+
+Pr(H) = $\lambda$\\
+Pr(T) = 1 - $\lambda$\\
+Pr(H on k + 1th flip) = $\lambda*(1-\lambda)^{k}$
+
+\item What is the expected number of tosses needed to get the first head?\\
+\LARGE
+$\frac{1}{\lambda}$
+\normalsize
+
+\end{enumerate}
+
+
+\item Assume $X$ is a random variable.  
+\begin{enumerate}
+\item We define the variance of X as: $Var(X) = E[(X - E[X])^2]$. Prove that $Var(X) = E[X^2] - E[X]^2$.\\
+
+We can expand $E[(X - E[X])^2]$ as $(X - E[X])*(X - E[X])$ and further expand that as\\ $E(X^2 - 2XE[X] + E[X]^2)$\\
+Let E[X] be a constant $\mu$ \\
+Therefore, \\
+\begin{equation*}
+ \begin{split}
+E(X^2 - 2XE[X] + E^2[X]) 
+ &= E(X^2 - 2X \mu + \mu ^2) \\
+ &= E[X^2] - 2 \mu E[X] + \mu ^2 \\
+ &= E[X^2] - 2 \mu ^2 + \mu ^2 \\
+ &= E[X^2] - \mu ^2 \\
+ &= E[X^2] - E[X]^2 \\
+ \end{split}
+\end{equation*}
+
+$$\fbox{\begin{minipage}{3.2em}
+Proven.
+\end{minipage}}$$
+
+\item If $E[X] = 0$ and $E[X^2] = 1$, what is the variance of $X$? If $Y = a + bX$, what is the variance of $Y$ ?\\
+
+$$\fbox{\begin{minipage}{8em}
+Variance of X is 1.
+\end{minipage}}$$
+
+\begin{equation*}
+\begin{split}
+V(Y) 
+&= V(a +b(X))\\
+&= b^2(var(X))\\
+&= b^2
+\end{split}
+\end{equation*}
+
+$$\fbox{\begin{minipage}{8em}
+Variance of Y is $b^2$
+\end{minipage}}$$
+\end{enumerate}
+
+
+\item One way to define a \emph{convex} function is as follows. A function $f(x)$ is
+convex if
+$$f(\lambda x + (1 - \lambda )y) \leq \lambda f(x) + (1 - \lambda )f(y)$$
+for all $x, y$ and $0 < \lambda < 1$.
+\begin{enumerate}
+\item Prove that $f(x) = x^2$ is a convex function. \\
+\\
+\large
+$(\lambda x + (1 - \lambda )y)^2 \leq \lambda x^2 + (1 - \lambda )y$\\
+$= \lambda ^2 x^2 + 2 \lambda x(1 - \lambda) y + (1 - \lambda)^2 y^2 \leq \lambda x^2 + y^2 - \lambda y^2$\\
+$= \lambda ^2 x^2 - \lambda x^2 + 2 \lambda x(1 - \lambda) y + \lambda y^2 + (1 - \lambda)^2 y^2  - y^2  \leq 0$\\
+$= \lambda ^2 x^2 - \lambda x^2 + 2 \lambda x(1 - \lambda) y + \lambda y^2 + y^2 - 2\lambda y^2 + \lambda ^2y^2  - y^2  \leq 0$\\
+$= (\lambda ^2 - \lambda) x^2 + 2 \lambda x(1 - \lambda) y - \lambda y^2 + \lambda ^2y^2 \leq 0$\\
+$= (\lambda ^2 - \lambda) x^2 + 2 \lambda x(1 - \lambda) y + (\lambda ^2 - \lambda) y^2  \leq 0$\\
+$= (\lambda ^2 - \lambda) x^2 - 2 x(\lambda^2 - \lambda) y + (\lambda ^2 - \lambda) y^2  \leq 0$\\
+$= (\lambda ^2 - \lambda) (x^2 - 2 x y +  y^2)  \leq 0$\\
+$= (\lambda ^2 - \lambda) (x -  y)^2  \leq 0$\\
+\normalsize \\
+This holds true for all $\lambda$ and if x = y and x $\neq$ y.\\
+
+
+\item A n-by-n matrix A is a \emph{positive semi-definite} matrix if $x^TAx \geq 0$, for any $x \in \mathbb R^n$
+s.t $x \neq 0$. Prove that the function $f(x) = x^TAx$ is convex if $A$ is a positive semi-definite
+matrix. Note that $x$ is a vector here.
+\end{enumerate}
+
+
+\newpage
+\textbf{Write short answers (3-4 sentences) to the following questions.}
+
+\item Describe two of your strengths and two weaknesses.\\
+
+My strengths would include being hardworking and the ability to absorb knowledge quickly. I am able to completely devote myself to the work I am given and am willing to solve any problem even if it means starting from scratch. I believe my greatest weakness is that I'm a shy person and is hard for me to speak up and that I've recently had some mental issues that prevent me from being in my full potential.
+
+\item Why are you taking this class? What excites you the most about this course?\\
+
+I have always been fascinated by AI and Machine Learning. The idea of machines being able to learn and "think" like humans is an interesting idea and I wish to delve into it. This class is the perfect stepping stone to achieving greater knowledge and I am excited to what I can achieve after gaining knowledge from this class.
+
+\item What are your biggest concerns regarding this course? Your answer could be the challenges you face in general at UCSC or something you expect for this course specifically. Your concerns could be academic or non-academic.\\
+
+I believe that since I am an international student, understanding the material in "official" terminology of Mathematics and coding in general will prove to be a hurdle for me. This might make me feel overwhelmed from the material given but I'm sure if I spend extra time on understanding I will be able to scrape by.
+
+\item The course has the following resources for you to get your questions regarding lecture material answered. As an answer to this question write the ones that you think you would end up using (resources that you usually use in other courses). \\
+Refer to books/online resources  \checkmark\\
+Ask questions during lectures\\
+Ask questions on Piazza  \checkmark\\
+Take help from classmates \checkmark\\
+Ask questions during Discussion Sections  \checkmark\\
+Attend TA Office hours  \checkmark\\
+Attend Instructor's office hours \checkmark\\
+
+\item What grade do you hope to earn in this course?\\
+
+I would most certainly aim for an A. But, realistically speaking, I would most likely get a B or even a C+ due to this course being an upper division course. However, I will try to do my absolute best and hope that I will end with an A.
+
+\item What will you do if the grade/s you earn on your first few assignments/exam are below what you hoped to earn for the course? \\
+
+I would spend more time learning the basics and foundations for this class since I feel like I might be lacking and if my grades are lower than usual then I will try to get more help than I usually do. If the worst ever comes then I will drop the class and try to take an optional prerequisite for this class.\\
+\end{enumerate}
+
+\end{document}
+
+
